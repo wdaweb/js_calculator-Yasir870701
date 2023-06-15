@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>美化計算機</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Bebas Neue", sans-serif;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url(./images/digital-art-artwork-simple-background-dark-wallpaper-b900c83d11aa2d1b56a7b88f5011268d1.jpg);
+        background-position: center;
+      }
+
+      table {
+        position: relative;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22.5%;
+        height: 60%;
+        background: url(./images/1.jpg);
+        background-position: center;
+        border-radius: 4px;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #c1c1c1;
+        border-left: 2px solid #c1c1c1;
+        box-shadow: -3px 3px 30px rgba(0, 0, 0, 0.6),
+          inset -50px 0px 100px rgba(255, 255, 255, 0.5);
+      }
+
+      tr {
+        display: flex;
+        text-align: center;
+        margin: 5px;
+        position: relative;
+      }
+
+      td {
+        background: white;
+        width: 80px;
+        height: 60px;
+        font-size: 40px;
+        margin: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #181818;
+        text-shadow: 1px 1px 0px #fff;
+        background-color: #ebebeb;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #c1c1c1;
+        border-left: 2px solid #c1c1c1;
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px #030303, inset 0px -20px 1px #dcdcdc;
+      }
+
+      td:active {
+        transform: translateY(5px);
+      }
+
+      #text {
+        width: 100%;
+        height: 80px;
+        border-top: 2px solid #c1c1c1;
+        border-right: 2px solid #c1c1c1;
+        border-bottom: 2px solid #fff;
+        border-left: 2px solid #fff;
+        background-color: #fff;
+        box-shadow: inset 0px 0px 10px #030303,
+          inset 0px -20px 1px rgba(150, 150, 150, 0.2);
+        font-size: 40px;
+        color: black;
+        text-shadow: 2px 2px 1px rgba(126, 17, 17, 0.5);
+      }
+
+      td.text2 {
+        position: absolute;
+        right: 0px;
+        height: 135px;
+      }
+      td.text3 {
+        position: absolute;
+        right: 0px;
+        height: 135px;
+        background: url(./images/En47hO8lnu3.jpg);
+        /* background-size: 70%; */
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      td.text4 {
+        width: 47%;
+      }
+
+      td.c {
+        color: #fff;
+        text-shadow: -1px -1px 0px #44006f;
+        background-color: #d20000;
+        border-top: 2px solid #ff8484;
+        border-right: 2px solid #ff8484;
+        border-bottom: 2px solid #800000;
+        border-left: 2px solid #800000;
+        box-shadow: 0px 0px 2px #030303, inset 0px -20px 1px #b00000;
+      }
+
+      /* 媒體查詢：視窗寬度小於600px時進行縮放 */
+      @media screen and (max-width: 600px) {
+        .container {
+          position: static;
+        }
+
+        table {
+          max-width: 80%;
+          max-height: 80%;
+          font-size: 40px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <table>
+        <tr>
+          <td colspan="4" id="text">0</td>
+        </tr>
+        <tr class="a">
+          <td class="c">C</td>
+          <td>/</td>
+          <td>*</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>
+          <td rowspan="2" class="text2">+</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td rowspan="2" class="text3">=</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text4">0</td>
+          <td>.</td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      const text = document.getElementById("text");
+      const btns = document.querySelectorAll("td:not(#text)");
+
+      for (const btn of btns) {
+        btn.addEventListener("click", () => {
+          const btnText = btn.innerText;
+          const operators = ["+", "-", "*", "/"];
+          const lastText = text.innerText[text.innerText.length - 1];
+          // 如果按的鍵是 =
+          if (btnText === "=") {
+            // 如果最後一個字不是運算子，才計算
+            if (!operators.includes(lastText)) {
+              text.innerText = eval(text.innerText);
+            }
+          }
+          // 如果按 C，歸 0
+          else if (btnText === "C") {
+            text.innerText = "0";
+          }
+          // 如果現在是 0，按的是數字，把文字取代
+          else if (text.innerText === "0" && !isNaN(parseInt(btnText))) {
+            text.innerText = btnText;
+          }
+          // 如果最後一個字是運算子
+          else if (operators.includes(lastText)) {
+            // 現在按的不是運算子，才加上去
+            if (!operators.includes(btnText)) {
+              text.innerText += btnText;
+            }
+          }
+          // 如果按的是 .
+          else if (btnText === ".") {
+            let canAddDot = true;
+            // 從最後一個字往前跑迴圈
+            for (let i = text.innerText.length - 1; i >= 0; i--) {
+              // 如果先遇到運算子，一定可以加 .
+              if (operators.includes(text.innerText[i])) break;
+              // 如果先遇到 .，一定不能加 .
+              if (text.innerText[i] === ".") {
+                canAddDot = false;
+                break;
+              }
+            }
+            // 迴圈完可以加才
+            if (canAddDot) text.innerText += ".";
+          }
+          // 如果最後一個字不是運算子，加上去
+          else {
+            text.innerText += btnText;
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        const btnText = event.key;
+        const operators = ["+", "-", "*", "/"];
+        const lastText = text.innerText[text.innerText.length - 1];
+        // 如果按的鍵是 =
+        if (btnText === "=" || btnText === "Enter") {
+          // 如果最後一個字不是運算子，才計算
+          if (!operators.includes(lastText)) {
+            text.innerText = eval(text.innerText);
+          }
+        }
+        // 如果按 C，歸 0
+        else if (btnText === "c") {
+          text.innerText = "0";
+        }
+        // 如果現在是 0，按的是數字，把文字取代
+        else if (text.innerText === "0" && !isNaN(parseInt(btnText))) {
+          text.innerText = btnText;
+        }
+        // 如果最後一個字是運算子
+        else if (operators.includes(lastText)) {
+          // 現在按的不是運算子，且是數字才加上去
+          if (!operators.includes(btnText) && !isNaN(parseInt(btnText))) {
+            text.innerText += btnText;
+          }
+        }
+        // 如果最後一個字不是運算子，且按的是數字或運算子，加上去
+        else if (!isNaN(parseInt(btnText)) || operators.includes(btnText)) {
+          text.innerText += btnText;
+        }
+        // 如果按的是 .
+        else if (btnText === ".") {
+          let canAddDot = true;
+          // 從最後一個字往前跑迴圈
+          for (let i = text.innerText.length - 1; i >= 0; i--) {
+            // 如果先遇到運算子，一定可以加 .
+            if (operators.includes(text.innerText[i])) break;
+            // 如果先遇到 .，一定不能加 .
+            if (text.innerText[i] === ".") {
+              canAddDot = false;
+              break;
+            }
+          }
+          // 迴圈完可以加才
+          if (canAddDot) text.innerText += ".";
+        }
+      });
+    </script>
+  </body>
+</html>
